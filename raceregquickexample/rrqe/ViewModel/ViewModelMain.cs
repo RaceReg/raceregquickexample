@@ -29,7 +29,7 @@ namespace rrqe.ViewModel
         }
 
         string _TextProperty1;
-        public string _TextProperty1
+        public string TextProperty1
         {
             get
             {
@@ -45,18 +45,18 @@ namespace rrqe.ViewModel
             }
         }
 
-        private RelayCommand AddRacerCommand {get; set;};
+        private RelayCommand AddRacerCommand {get; set;}
 
 
         public ViewModelMain()
         {
             RaceRecords = new ObservableCollection<RaceRecord>
             {
-                new RaceRecord{FirstName="Jackson", LastName="Porter", Age=21, Gender=Gender.Male},
-                new RaceRecord{FirstName="Alex", LastName="Thayn", Age=24, Gender=Gender.Male},
-                new RaceRecord{FirstName="Leedan", LastName="Johnson", Age=23, Gender=Gender.Male},
+                new RaceRecord{FirstName="Jackson", LastName="Porter", Age=21, Gender="Male"},
+                new RaceRecord{FirstName="Alex", LastName="Thayn", Age=24, Gender="Male"},
+                new RaceRecord{FirstName="Leedan", LastName="Johnson", Age=23, Gender="Male"},
             };
-            TextProperty = "Type Your New Racer Here";
+            TextProperty1 = "Type Your New Racer Here";
 
             AddRacerCommand = new RelayCommand(AddRacer);
 
@@ -66,10 +66,13 @@ namespace rrqe.ViewModel
                 {
                     return;
                 }
-                RaceRecords.Add(new RaceRecord {FirstName = parameter.ToString(),
-                    LastName = parameter.ToString(),  
-                    Age = Int32.Parse(parameter.ToString()), 
-                    Gender = parameter.ToString() })
+                RaceRecords.Add(new RaceRecord
+                {
+                    FirstName = parameter.ToString(),
+                    LastName = parameter.ToString(),
+                    Age = Int32.Parse(parameter.ToString()),
+                    Gender = parameter.ToString()
+                });
             }
         }
     }

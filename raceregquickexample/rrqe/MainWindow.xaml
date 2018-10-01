@@ -5,20 +5,30 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:rrqe"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        WindowStartupLocation="CenterScreen"
+        Title="MainWindow" Height="450" Width="800"
+       >
     <StackPanel>
         <Menu>
             <MenuItem Header="_File">
                 <MenuItem Header="_Exit Program" Click="ExitProgram"/>
             </MenuItem>
         </Menu>
-        <StackPanel Orientation="Horizontal">
-            <ComboBox>
-
-            </ComboBox>
-            <ItemsControl>
-                
-            </ItemsControl>
-        </StackPanel>
+        <ScrollViewer>
+            <StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <ComboBox ItemsSource="{Binding RaceRecords}" SelectedItem="{Binding SelectedRecord}" DisplayMemberPath="FirstName" Margin="10" VerticalAlignment="Top"/>
+                    <DataGrid ItemsSource="{Binding RaceRecords}"
+                          SelectedItem="{Binding SelectedRecord}"
+                          HorizontalAlignment="Left"
+                          Margin="5,0,0,0"/>
+                </StackPanel>
+                <TextBox x:Name="textbox1" Text="{Binding TextProperty1,UpdateSourceTrigger=PropertyChanged}" Margin="5" />
+                <!--
+                <Button Content="Add New Racer" Command="{Binding AddRacerCommand}" CommandParameter="{Binding Text, ElementName=textbox1}" Margin="10"/>
+                -->
+            </StackPanel>
+            
+        </ScrollViewer>
     </StackPanel>
 </Window>
