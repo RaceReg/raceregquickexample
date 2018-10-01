@@ -28,7 +28,24 @@ namespace rrqe.ViewModel
             }
         }
 
-        private RelayCommand addTime;
+        string _TextProperty1;
+        public string _TextProperty1
+        {
+            get
+            {
+                return _TextProperty1;
+            }
+            set
+            {
+                if(_TextProperty1 != value)
+                {
+                    _TextProperty1 = value;
+                    RaisePropertyChanged("TextProperty1");
+                }
+            }
+        }
+
+        private RelayCommand AddRacerCommand {get; set;};
 
 
         public ViewModelMain()
@@ -39,6 +56,9 @@ namespace rrqe.ViewModel
                 new RaceRecord{FirstName="Alex", LastName="Thayn", Age=24, Gender=Gender.Male},
                 new RaceRecord{FirstName="Leedan", LastName="Johnson", Age=23, Gender=Gender.Male},
             };
+            TextProperty = "Type Your New Racer Here";
+
+            AddRacerCommand = new RelayCommand(AddRacer);
 
             void AddRacer(object parameter)
             {
@@ -46,7 +66,10 @@ namespace rrqe.ViewModel
                 {
                     return;
                 }
-                RaceRecords.Add(new RaceRecord {FirstName = parameter.ToString(), LastName = parameter.ToString(),  Age = Int32.Parse(parameter.ToString()), Gender = parameter.ToString() })
+                RaceRecords.Add(new RaceRecord {FirstName = parameter.ToString(),
+                    LastName = parameter.ToString(),  
+                    Age = Int32.Parse(parameter.ToString()), 
+                    Gender = parameter.ToString() })
             }
         }
     }
