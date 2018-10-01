@@ -25,6 +25,9 @@ namespace rrqe
             InitializeComponent();
         }
 
+        /*
+         * Exit the program, based on a click event.
+         */
         public void ExitProgram(object sender, EventArgs e)
         {
             System.Environment.Exit(0);

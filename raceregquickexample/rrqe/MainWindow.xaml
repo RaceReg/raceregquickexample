@@ -16,9 +16,9 @@
             <ComboBox>
 
             </ComboBox>
-            <DataGrid>
-
-            </DataGrid>
+            <ItemsControl>
+                
+            </ItemsControl>
         </StackPanel>
     </StackPanel>
 </Window>
