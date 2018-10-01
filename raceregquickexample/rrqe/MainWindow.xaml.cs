@@ -24,5 +24,10 @@ namespace rrqe
         {
             InitializeComponent();
         }
+
+        public void ExitProgram(object sender, EventArgs e)
+        {
+            System.Environment.Exit(0);
+        }
     }
 }
