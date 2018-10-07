@@ -3,11 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-//using RaceReqQuickExample.ViewModel;
 
-namespace Tests
+namespace RaceRegQuickExample.Model
 {
-    public class Class1
+    class Model
     {
     }
 }
