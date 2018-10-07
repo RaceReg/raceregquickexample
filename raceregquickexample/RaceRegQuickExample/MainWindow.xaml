@@ -5,8 +5,15 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:RaceRegQuickExample"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        
-    </Grid>
+        Title="MainWindow" Height="450" Width="800"
+        xmlns:vm="clr-namespace:RaceRegQuickExample.ViewModel"
+        DataContext="vm">
+    <StackPanel>
+        <TextBlock Text="{Binding currentRace.RaceTitle}">
+            
+        </TextBlock>
+        <TextBlock>
+            Test Text
+        </TextBlock>
+    </StackPanel>
 </Window>
