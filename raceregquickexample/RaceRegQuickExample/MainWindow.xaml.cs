@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using RaceRegQuickExample.ViewModel;
 
 namespace RaceRegQuickExample
 {
@@ -23,6 +24,7 @@ namespace RaceRegQuickExample
         public MainWindow()
         {
             InitializeComponent();
+            DataContext = new ViewModel.ViewModel();
         }
     }
 }

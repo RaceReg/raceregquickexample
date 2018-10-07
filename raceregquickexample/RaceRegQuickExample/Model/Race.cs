@@ -13,5 +13,10 @@ namespace RaceRegQuickExample.Model
         public DateTime StartDate_Time { get; set; }
         public String RaceDescription { get; set; }
         public ObservableCollection<Racer> racers { get; set; }
+
+        public Race()
+        {
+            racers = new ObservableCollection<Racer>();
+        }
     }
 }
