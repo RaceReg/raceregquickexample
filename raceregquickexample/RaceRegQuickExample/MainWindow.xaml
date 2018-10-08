@@ -34,7 +34,7 @@
         <Rectangle Grid.Column="1" Fill="LightSkyBlue"/>
         <StackPanel Grid.Column="2">
             <TextBlock Text="Current Racers:" HorizontalAlignment="Center"/>
-            <ScrollViewer>
+            <ScrollViewer Height="225">
                 <DataGrid DataContext="{Binding CurrentRace.racers}">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="First Name"/>
@@ -71,6 +71,11 @@
                 </ComboBox>
                 <Button Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="4" Content="Add Racer"/>
             </Grid>
+            
+            <TextBlock Text="Example of Range Control:" TextAlignment="Center"/>
+            <TextBlock Text="{Binding ElementName=slider1, Path=Value, UpdateSourceTrigger=PropertyChanged}" TextAlignment="Center"/>
+            <Slider TickPlacement="Both" Minimum="0" Maximum="100" 
+                    IsSnapToTickEnabled="True" Name="slider1"/>
         </StackPanel>
     </Grid>
 </Window>
