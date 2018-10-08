@@ -5,15 +5,64 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:RaceRegQuickExample"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800"
+        Title="Race Registration" Height="450" Width="850"
         xmlns:vm="clr-namespace:RaceRegQuickExample.ViewModel"
         >
-    <StackPanel>
-        <TextBlock Text="{Binding CurrentRace.RaceTitle}">
-            
-        </TextBlock>
-        <TextBlock>
-            Test Text
-        </TextBlock>
-    </StackPanel>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="25"/>
+            <ColumnDefinition Width="3*"/>
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.Column="0">
+            <Image Source="Images/RaceRegLogo_TimingAndRegistration.png" Height="100" Width="100"/>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Race Title: "/>
+                <TextBox Text="{Binding CurrentRace.RaceTitle}" HorizontalAlignment="Center"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Race Date/Time: "/>
+                <TextBox Text="{Binding CurrentRace.StartDate_Time}" HorizontalAlignment="Center"/>
+            </StackPanel>
+            <Calendar SelectedDate="{Binding CurrentRace.StartDate_Time}"/>
+            <TextBlock Text="Race Description:"/>
+            <TextBox Text="{Binding CurrentRace.RaceDescription}"/>
+        </StackPanel>
+        <Rectangle Grid.Column="1" Fill="LightSkyBlue"/>
+        <StackPanel Grid.Column="2">
+            <TextBlock Text="Current Racers:" HorizontalAlignment="Center"/>
+            <ScrollViewer>
+                <DataGrid>
+
+                </DataGrid>
+            </ScrollViewer>
+            <TextBlock Grid.Column="0" Text="Add Racer:" HorizontalAlignment="Center"/>
+            <Grid VerticalAlignment="Center" Width="225">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="75"/>
+                    <ColumnDefinition Width="150"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="20"/>
+                    <RowDefinition Height="20"/>
+                    <RowDefinition Height="20"/>
+                    <RowDefinition Height="20"/>
+                    <RowDefinition Height="20"/>
+                </Grid.RowDefinitions>
+                <TextBlock Grid.Column="0" Grid.Row="0" Text="First Name: "/>
+                <TextBox Grid.Column="1" Grid.Row="0" Width="100" />
+                <TextBlock Grid.Column="0" Grid.Row="1" Text="Last Name: "/>
+                <TextBox Grid.Column="1" Grid.Row="1" Width="100" />
+                <TextBlock Grid.Column="0" Grid.Row="2" Text="Age: "/>
+                <TextBox Grid.Column="1" Grid.Row="2" Width="100" />
+                <TextBlock Grid.Column="0" Grid.Row="3" Text="Gender: "/>
+                <ComboBox Grid.Column="1" Grid.Row="3" Width="100">
+                    <ComboBoxItem Content="Male" />
+                    <ComboBoxItem Content="Female" />
+                    <ComboBoxItem Content="Other" />
+                </ComboBox>
+                <Button Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="4" Content="Add Racer"/>
+            </Grid>
+        </StackPanel>
+    </Grid>
 </Window>

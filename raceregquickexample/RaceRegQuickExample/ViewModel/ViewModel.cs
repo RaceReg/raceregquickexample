@@ -30,7 +30,8 @@ namespace RaceRegQuickExample.ViewModel
         {
             currentRace = new Race();
             currentRace.RaceTitle = "TestRace";
-            currentRace.StartDate_Time = DateTime.Today;
+            DateTime todayPlusOne = DateTime.Today.AddDays(1);
+            currentRace.StartDate_Time = todayPlusOne;
             currentRace.RaceDescription = "This is crazy.";
 
             Racer tempRacer = new Racer();
