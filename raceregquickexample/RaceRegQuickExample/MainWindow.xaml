@@ -9,7 +9,7 @@
         xmlns:vm="clr-namespace:RaceRegQuickExample.ViewModel"
         >
     <StackPanel>
-        <TextBlock Text="{Binding currentRace.RaceTitle}">
+        <TextBlock Text="{Binding CurrentRace.RaceTitle}">
             
         </TextBlock>
         <TextBlock>
