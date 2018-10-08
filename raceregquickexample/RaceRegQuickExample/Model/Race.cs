@@ -18,5 +18,14 @@ namespace RaceRegQuickExample.Model
         {
             racers = new ObservableCollection<Racer>();
         }
+
+        public string ToString
+        {
+            get
+            {
+                return RaceTitle + ";" + StartDate_Time.ToShortDateString() + ";" +
+                    RaceDescription + ";" + racers.ToString();
+            }
+        }
     }
 }

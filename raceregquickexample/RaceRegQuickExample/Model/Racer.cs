@@ -13,5 +13,13 @@ namespace RaceRegQuickExample.Model
         public int Age { get; set; }
         public String Gender { get; set; }
         public DateTime FinishTime { get; set; }
+
+        public string ToString
+        {
+            get
+            {
+                return FirstName + ";" + LastName + ";" + Age + ";" + Gender + ";" + FinishTime.ToShortDateString();
+            }
+        }
     }
 }

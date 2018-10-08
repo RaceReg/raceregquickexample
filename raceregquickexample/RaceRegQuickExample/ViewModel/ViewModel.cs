@@ -46,7 +46,7 @@ namespace RaceRegQuickExample.ViewModel
 
         public void ExportRace()
         {
-            //Not implemented yet
+            Console.WriteLine(currentRace.ToString);
         }
 
         private void NotifyPropertyChanged([CallerMemberName] string propertyName = "")
