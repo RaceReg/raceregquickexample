@@ -33,6 +33,7 @@ namespace RaceRegQuickExample.ViewModel
             DateTime todayPlusOne = DateTime.Today.AddDays(1);
             currentRace.StartDate_Time = todayPlusOne;
             currentRace.RaceDescription = "This is crazy.";
+            
 
             Racer tempRacer = new Racer();
             tempRacer.FirstName = "Alex";
@@ -41,6 +42,11 @@ namespace RaceRegQuickExample.ViewModel
             tempRacer.Age = 25;
 
             currentRace.racers.Add(tempRacer);
+        }
+
+        public void ExportRace()
+        {
+            //Not implemented yet
         }
 
         private void NotifyPropertyChanged([CallerMemberName] string propertyName = "")

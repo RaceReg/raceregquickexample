@@ -27,13 +27,21 @@
             <Calendar SelectedDate="{Binding CurrentRace.StartDate_Time}"/>
             <TextBlock Text="Race Description:"/>
             <TextBox Text="{Binding CurrentRace.RaceDescription}"/>
+            <Button Content="Update Race Information">
+                
+            </Button>
         </StackPanel>
         <Rectangle Grid.Column="1" Fill="LightSkyBlue"/>
         <StackPanel Grid.Column="2">
             <TextBlock Text="Current Racers:" HorizontalAlignment="Center"/>
             <ScrollViewer>
-                <DataGrid>
-
+                <DataGrid DataContext="{Binding CurrentRace.racers}">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="First Name"/>
+                        <DataGridTextColumn Header="Last Name"/>
+                        <DataGridTextColumn Header="Age"/>
+                        <DataGridTextColumn Header="Gender"/>
+                    </DataGrid.Columns>
                 </DataGrid>
             </ScrollViewer>
             <TextBlock Grid.Column="0" Text="Add Racer:" HorizontalAlignment="Center"/>
