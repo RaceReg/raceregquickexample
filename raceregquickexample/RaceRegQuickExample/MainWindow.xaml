@@ -35,12 +35,12 @@
         <StackPanel Grid.Column="2">
             <TextBlock Text="Current Racers:" HorizontalAlignment="Center"/>
             <ScrollViewer Height="225">
-                <DataGrid DataContext="{Binding CurrentRace.racers}">
+                <DataGrid ItemsSource="{Binding CurrentRace.racers}" AutoGenerateColumns="False">
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="First Name"/>
-                        <DataGridTextColumn Header="Last Name"/>
-                        <DataGridTextColumn Header="Age"/>
-                        <DataGridTextColumn Header="Gender"/>
+                        <DataGridTextColumn Header="First Name" Binding="{Binding FirstName}"/>
+                        <DataGridTextColumn Header="Last Name" Binding="{Binding LastName}"/>
+                        <DataGridTextColumn Header="Age" Binding="{Binding Age}"/>
+                        <DataGridTextColumn Header="Gender" Binding="{Binding Gender}"/>
                     </DataGrid.Columns>
                 </DataGrid>
             </ScrollViewer>

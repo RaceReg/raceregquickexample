@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace RaceRegQuickExample.Model
 {
-    class Racer
+    public class Racer
     {
         public String FirstName { get; set; }
         public String LastName { get; set; }
@@ -14,12 +14,9 @@ namespace RaceRegQuickExample.Model
         public String Gender { get; set; }
         public DateTime FinishTime { get; set; }
 
-        public string ToString
+        public string GetToString()
         {
-            get
-            {
-                return FirstName + ";" + LastName + ";" + Age + ";" + Gender + ";" + FinishTime.ToShortDateString();
-            }
+            return FirstName + ";" + LastName + ";" + Age + ";" + Gender + ";" + FinishTime.ToShortDateString();
         }
     }
 }

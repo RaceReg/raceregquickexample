@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace RaceRegQuickExample.ViewModel
 {
-    class ViewModel : INotifyPropertyChanged
+    public class ViewModel : INotifyPropertyChanged
     {
         //Race currentRace;
         private Race currentRace;
@@ -44,9 +44,14 @@ namespace RaceRegQuickExample.ViewModel
             currentRace.racers.Add(tempRacer);
         }
 
-        public void ExportRace()
+        public string ExportRace()
         {
-            Console.WriteLine(currentRace.ToString);
+            string result = currentRace.GetToString();
+            Console.WriteLine(result);
+            //System.IO.File.WriteAllText(@"C:\RaceRegOutput.txt", result);
+
+
+            return "Test1";
         }
 
         private void NotifyPropertyChanged([CallerMemberName] string propertyName = "")

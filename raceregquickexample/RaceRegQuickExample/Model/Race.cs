@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace RaceRegQuickExample.Model
 {
-    class Race
+    public class Race
     {
         public String RaceTitle { get; set; }
         public DateTime StartDate_Time { get; set; }
@@ -19,13 +19,15 @@ namespace RaceRegQuickExample.Model
             racers = new ObservableCollection<Racer>();
         }
 
-        public string ToString
+        public string GetToString()
         {
-            get
+            string raceData = RaceTitle + ";" + StartDate_Time.ToShortDateString() + ";" +
+                RaceDescription + ";" + "\n";
+            for (int i = 0; i < racers.Count; i++)
             {
-                return RaceTitle + ";" + StartDate_Time.ToShortDateString() + ";" +
-                    RaceDescription + ";" + racers.ToString();
+                raceData += racers.ElementAt(i).GetToString() + "\n";
             }
+            return raceData;
         }
     }
 }
