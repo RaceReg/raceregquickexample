@@ -8,6 +8,23 @@
         Title="Race Registration" Height="450" Width="850"
         xmlns:vm="clr-namespace:RaceRegQuickExample.ViewModel"
         >
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary>
+                    <Style TargetType="TextBox">
+                        <Style.Triggers>
+                            <Trigger Property="Validation.HasError"
+                                     Value="true">
+                                <Setter Property="ToolTip"
+                                        Value="{Binding RelativeSource={x:Static RelativeSource.Self}, Path=(Validation.Errors).CurrentItem.ErrorContent}" />
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
@@ -21,8 +38,12 @@
                 <TextBox Text="{Binding CurrentRace.RaceTitle}" HorizontalAlignment="Center"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
-                <TextBlock Text="Race Date/Time: "/>
-                <TextBox Text="{Binding CurrentRace.StartDate_Time}" HorizontalAlignment="Center"/>
+                <TextBlock Text="Race Date: "/>
+                <TextBox Text="{Binding CurrentRace.StartDate_Time, StringFormat='{}{0:MM/dd/yyyy}'}" HorizontalAlignment="Center"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Race Time: "/>
+                <TextBox Text="{Binding CurrentRace.StartDate_Time, StringFormat='{}{0:H:mm}'}" HorizontalAlignment="Center"/>
             </StackPanel>
             <Calendar SelectedDate="{Binding CurrentRace.StartDate_Time}"/>
             <TextBlock Text="Race Description:"/>
@@ -64,18 +85,20 @@
                 <TextBlock Grid.Column="0" Grid.Row="2" Text="Age: "/>
                 <TextBox Grid.Column="1" Grid.Row="2" Width="100" Text="{Binding currentRacer.Age, ValidatesOnDataErrors=True}"/>
                 <TextBlock Grid.Column="0" Grid.Row="3" Text="Gender: "/>
-                <ComboBox Grid.Column="1" Grid.Row="3" Width="100">
+                <ComboBox Grid.Column="1" Grid.Row="3" Width="100" SelectedValue="{Binding currentRacer.Gender}" SelectedValuePath="Content">
                     <ComboBoxItem Content="Male" />
                     <ComboBoxItem Content="Female" />
                     <ComboBoxItem Content="Other" />
                 </ComboBox>
-                <Button Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="4" Content="Add Racer"/>
+                <Button Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="4" Content="Add Racer" Command="{Binding AddRacerCommand}"/>
             </Grid>
             
+            <!--
             <TextBlock Text="Example of Range Control:" TextAlignment="Center"/>
             <TextBlock Text="{Binding ElementName=slider1, Path=Value, UpdateSourceTrigger=PropertyChanged}" TextAlignment="Center"/>
             <Slider TickPlacement="Both" Minimum="0" Maximum="100" 
                     IsSnapToTickEnabled="True" Name="slider1"/>
+            -->
         </StackPanel>
     </Grid>
 </Window>

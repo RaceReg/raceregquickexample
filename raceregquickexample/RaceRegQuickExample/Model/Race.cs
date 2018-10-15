@@ -27,6 +27,8 @@ namespace RaceRegQuickExample.Model
             {
                 raceData += racers.ElementAt(i).GetToString() + "\n";
             }
+
+            Console.WriteLine(raceData);
             return raceData;
         }
     }

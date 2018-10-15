@@ -11,6 +11,8 @@ namespace RaceRegQuickExample.ViewModel
 {
     public class ViewModel : INotifyPropertyChanged
     {
+        public RelayCommand AddRacerCommand { get; set; }
+
         private Race currentRace;
         public Race CurrentRace
         {
@@ -44,6 +46,14 @@ namespace RaceRegQuickExample.ViewModel
 
             currentRace.racers.Add(tempRacer);
 
+            AddRacerCommand = new RelayCommand(AddRacer);
+
+            currentRacer = new Racer();
+        }
+
+        public void AddRacer(object obj)
+        {
+            currentRace.racers.Add(currentRacer);
             currentRacer = new Racer();
         }
 
@@ -54,7 +64,7 @@ namespace RaceRegQuickExample.ViewModel
             //System.IO.File.WriteAllText(@"C:\RaceRegOutput.txt", result);
 
 
-            return "Test1";
+            return result;
         }
 
         private void NotifyPropertyChanged([CallerMemberName] string propertyName = "")
