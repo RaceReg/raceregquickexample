@@ -11,7 +11,6 @@ namespace RaceRegQuickExample.ViewModel
 {
     public class ViewModel : INotifyPropertyChanged
     {
-        //Race currentRace;
         private Race currentRace;
         public Race CurrentRace
         {
@@ -25,6 +24,8 @@ namespace RaceRegQuickExample.ViewModel
                 NotifyPropertyChanged(nameof(CurrentRace));
             }
         }
+
+        public Racer currentRacer { get; set; }
 
         public ViewModel()
         {
@@ -42,6 +43,8 @@ namespace RaceRegQuickExample.ViewModel
             tempRacer.Age = 25;
 
             currentRace.racers.Add(tempRacer);
+
+            currentRacer = new Racer();
         }
 
         public string ExportRace()
