@@ -12,6 +12,7 @@
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary>
+                    <vm:MultiBoolToVisConverter x:Key="MultiBoolToVisConverter"/>
                     <Style TargetType="TextBox">
                         <Style.Triggers>
                             <Trigger Property="Validation.HasError"
@@ -79,18 +80,24 @@
                     <RowDefinition Height="20"/>
                 </Grid.RowDefinitions>
                 <TextBlock Grid.Column="0" Grid.Row="0" Text="First Name: "/>
-                <TextBox Grid.Column="1" Grid.Row="0" Width="100" Text="{Binding currentRacer.FirstName, ValidatesOnDataErrors=True}"/>
+                <TextBox Grid.Column="1" Grid.Row="0" Width="100" Text="{Binding currentRacer.FirstName, ValidatesOnDataErrors=True}" Name="TBFirstName"/>
                 <TextBlock Grid.Column="0" Grid.Row="1" Text="Last Name: "/>
-                <TextBox Grid.Column="1" Grid.Row="1" Width="100" Text="{Binding currentRacer.LastName, ValidatesOnDataErrors=True}" />
+                <TextBox Grid.Column="1" Grid.Row="1" Width="100" Text="{Binding currentRacer.LastName, ValidatesOnDataErrors=True}" Name="TBLastName" />
                 <TextBlock Grid.Column="0" Grid.Row="2" Text="Age: "/>
-                <TextBox Grid.Column="1" Grid.Row="2" Width="100" Text="{Binding currentRacer.Age, ValidatesOnDataErrors=True}"/>
+                <TextBox Grid.Column="1" Grid.Row="2" Width="100" Text="{Binding currentRacer.Age, ValidatesOnDataErrors=True}" Name="TBAge"/>
                 <TextBlock Grid.Column="0" Grid.Row="3" Text="Gender: "/>
-                <ComboBox Grid.Column="1" Grid.Row="3" Width="100" SelectedValue="{Binding currentRacer.Gender}" SelectedValuePath="Content">
-                    <ComboBoxItem Content="Male" />
-                    <ComboBoxItem Content="Female" />
-                    <ComboBoxItem Content="Other" />
+                <ComboBox Grid.Column="1" Grid.Row="3" Width="100" ItemsSource="{Binding currentRacer.GenderTypes}" DisplayMemberPath="" 
+                          SelectedValue="{Binding currentRacer.Gender}" SelectedValuePath="Content">
                 </ComboBox>
-                <Button Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="4" Content="Add Racer" Command="{Binding AddRacerCommand}"/>
+                <Button Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="4" Content="Add Racer" Command="{Binding AddRacerCommand}">
+                    <Button.Visibility>
+                        <MultiBinding Converter="{StaticResource MultiBoolToVisConverter}" Mode="TwoWay">
+                            <Binding ElementName="TBFirstName" Path="(Validation.HasError)" />
+                            <Binding ElementName="TBLastName" Path="(Validation.HasError)" />
+                            <Binding ElementName="TBAge" Path="(Validation.HasError)" />
+                        </MultiBinding>
+                    </Button.Visibility>
+                </Button>
             </Grid>
             
             <!--

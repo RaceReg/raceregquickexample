@@ -17,6 +17,13 @@ namespace RaceRegQuickExample.Model
         public string this[string columnName] => errors.ContainsKey(columnName) ? errors[columnName] : null;
 
         public enum GenderType {Male, Female, Other};
+        public IEnumerable<GenderType> GenderTypes
+        {
+            get
+            {
+                return Enum.GetValues(typeof(GenderType)).Cast<GenderType>().ToList<GenderType>();
+            }
+        }
 
         private string _FirstName;
         private string _LastName;
@@ -24,12 +31,15 @@ namespace RaceRegQuickExample.Model
 
         public Racer()
         {
-
+            FirstName = "Jackson";
+            LastName = "Porter";
+            Age = 0;
+            Gender = GenderType.Male;
         }
                
         private void ValidateFirstName()
         {
-            if (FirstName == null || FirstName.Any(Char.IsWhiteSpace))
+            if (FirstName == null || FirstName.Equals(String.Empty) || FirstName.Any(Char.IsWhiteSpace))
             {
                 errors[nameof(FirstName)] = "First name must contain no spaces, and cannot be empty.";
             }
@@ -41,7 +51,7 @@ namespace RaceRegQuickExample.Model
 
         private void ValidateLastName()
         {
-            if (LastName == null || LastName.Any(Char.IsWhiteSpace))
+            if (LastName == null || LastName.Equals(String.Empty) || LastName.Any(Char.IsWhiteSpace))
             {
                 errors[nameof(LastName)] = "Last name must contain no spaces, and cannot be empty.";
             }
@@ -115,11 +125,11 @@ namespace RaceRegQuickExample.Model
                 OnPropertyChanged(nameof(Age));
             }
         }
-
+        
         private GenderType gender;
         public GenderType Gender {
             get
-            {
+            { 
                 return gender;
             }
             set
