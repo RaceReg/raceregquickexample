@@ -91,5 +91,13 @@ namespace Tests
 
             Assert.AreEqual(myRacer[nameof(myRacer.Gender)], null);
         }
+
+        [Test]
+        public void ValidateAll()
+        {
+            var myRacer = new Racer();
+
+            Assert.AreEqual(myRacer.IsValid, true);
+        }
     }
 }

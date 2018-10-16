@@ -12,7 +12,8 @@
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary>
-                    <vm:MultiBoolToVisConverter x:Key="MultiBoolToVisConverter"/>
+                    <!--<vm:MultiBoolToVisConverter x:Key="MultiBoolToVisConverter"/>-->
+                    <BooleanToVisibilityConverter x:Key="BoolToVisConverter" />
                     <Style TargetType="TextBox">
                         <Style.Triggers>
                             <Trigger Property="Validation.HasError"
@@ -89,7 +90,9 @@
                 <ComboBox Grid.Column="1" Grid.Row="3" Width="100" ItemsSource="{Binding currentRacer.GenderTypes}" DisplayMemberPath="" 
                           SelectedValue="{Binding currentRacer.Gender}" SelectedValuePath="Content">
                 </ComboBox>
-                <Button Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="4" Content="Add Racer" Command="{Binding AddRacerCommand}">
+                <Button Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="4" Content="Add Racer" Command="{Binding AddRacerCommand}" 
+                        Visibility="{Binding currentRacer.IsValid, Converter={StaticResource BoolToVisConverter}, UpdateSourceTrigger=PropertyChanged}">
+                    <!--
                     <Button.Visibility>
                         <MultiBinding Converter="{StaticResource MultiBoolToVisConverter}" Mode="TwoWay">
                             <Binding ElementName="TBFirstName" Path="(Validation.HasError)" />
@@ -97,6 +100,7 @@
                             <Binding ElementName="TBAge" Path="(Validation.HasError)" />
                         </MultiBinding>
                     </Button.Visibility>
+                    -->
                 </Button>
             </Grid>
             

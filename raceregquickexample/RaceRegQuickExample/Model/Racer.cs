@@ -33,55 +33,88 @@ namespace RaceRegQuickExample.Model
         {
             FirstName = "Jackson";
             LastName = "Porter";
-            Age = 0;
+            Age = 1;
             Gender = GenderType.Male;
         }
-               
-        private void ValidateFirstName()
+
+        private bool isValid;
+        public bool IsValid
+        {
+            get
+            {
+                return isValid;
+            }
+            set
+            {
+                isValid = value;
+                OnPropertyChanged(nameof(IsValid));
+            }
+        }
+
+        private void setValid()
+        {
+            bool fN = ValidateFirstName();
+            bool lN = ValidateLastName();
+            bool aG = ValidateAge();
+            bool gD = ValidateGender();
+
+
+            IsValid = fN && lN && aG && gD;
+        }
+
+        private bool ValidateFirstName()
         {
             if (FirstName == null || FirstName.Equals(String.Empty) || FirstName.Any(Char.IsWhiteSpace))
             {
                 errors[nameof(FirstName)] = "First name must contain no spaces, and cannot be empty.";
+                return false;
             }
             else
             {
                 errors[nameof(FirstName)] = null;
+                return true;
             }
         }
 
-        private void ValidateLastName()
+        private bool ValidateLastName()
         {
             if (LastName == null || LastName.Equals(String.Empty) || LastName.Any(Char.IsWhiteSpace))
             {
                 errors[nameof(LastName)] = "Last name must contain no spaces, and cannot be empty.";
+                return false;
             }
             else
             {
                 errors[nameof(LastName)] = null;
+                return true;
             }
         }
 
-        private void ValidateAge()
+        private bool ValidateAge()
         {
             if (Age < 1 || Age > 150)
             {
                 errors[nameof(Age)] = "Age must be between 1 and 150.";
+                return false;
             }
             else
             {
                 errors[nameof(Age)] = null;
+                return true;
             }
         }
 
-        private void ValidateGender()
+        private bool ValidateGender()
         {
             if (!Enum.IsDefined(typeof(GenderType), Gender))
             {
                 errors[nameof(Gender)] = "Gender must be Male, Female or Other.";
+                return false;
             }
             else
             {
                 errors[nameof(Gender)] = null;
+                return true;
             }
         }
 
@@ -93,7 +126,8 @@ namespace RaceRegQuickExample.Model
             set
             {
                 _FirstName = value;
-                ValidateFirstName();
+                //ValidateFirstName();
+                setValid();
                 OnPropertyChanged(nameof(FirstName));
             }
         }
@@ -107,7 +141,8 @@ namespace RaceRegQuickExample.Model
             set
             {
                 _LastName = value;
-                ValidateLastName();
+                //ValidateLastName();
+                setValid();
                 OnPropertyChanged(nameof(LastName));
             }
         }
@@ -121,7 +156,8 @@ namespace RaceRegQuickExample.Model
             set
             {
                 _Age = value;
-                ValidateAge();
+                //ValidateAge();
+                setValid();
                 OnPropertyChanged(nameof(Age));
             }
         }
@@ -135,7 +171,8 @@ namespace RaceRegQuickExample.Model
             set
             {
                 gender = value;
-                ValidateGender();
+                //ValidateGender();
+                setValid();
                 OnPropertyChanged(nameof(gender));
             }
         }
