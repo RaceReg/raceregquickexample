@@ -41,7 +41,7 @@ namespace RaceRegQuickExample.ViewModel
             Racer tempRacer = new Racer();
             tempRacer.FirstName = "Alex";
             tempRacer.LastName = "Thayn";
-            tempRacer.Gender = "Male";
+            tempRacer.Gender = Racer.GenderType.Male;
             tempRacer.Age = 25;
 
             currentRace.racers.Add(tempRacer);

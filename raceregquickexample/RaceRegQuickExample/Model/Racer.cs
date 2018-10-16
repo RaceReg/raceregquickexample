@@ -10,16 +10,23 @@ namespace RaceRegQuickExample.Model
 {
     public class Racer : IDataErrorInfo, INotifyPropertyChanged
     {
+
         public Dictionary<string, string> errors = new Dictionary<string, string>();
 
         public string Error => throw new NotImplementedException();
         public string this[string columnName] => errors.ContainsKey(columnName) ? errors[columnName] : null;
 
+        public enum GenderType {Male, Female, Other};
 
         private string _FirstName;
         private string _LastName;
         private int _Age;
 
+        public Racer()
+        {
+
+        }
+               
         private void ValidateFirstName()
         {
             if (FirstName == null || FirstName.Any(Char.IsWhiteSpace))
@@ -30,8 +37,6 @@ namespace RaceRegQuickExample.Model
             {
                 errors[nameof(FirstName)] = null;
             }
-
-            OnPropertyChanged(nameof(FirstName));
         }
 
         private void ValidateLastName()
@@ -44,9 +49,6 @@ namespace RaceRegQuickExample.Model
             {
                 errors[nameof(LastName)] = null;
             }
-
-            OnPropertyChanged(nameof(LastName));
-
         }
 
         private void ValidateAge()
@@ -59,9 +61,18 @@ namespace RaceRegQuickExample.Model
             {
                 errors[nameof(Age)] = null;
             }
+        }
 
-            OnPropertyChanged(nameof(Age));
-
+        private void ValidateGender()
+        {
+            if (!Enum.IsDefined(typeof(GenderType), Gender))
+            {
+                errors[nameof(Gender)] = "Gender must be Male, Female or Other.";
+            }
+            else
+            {
+                errors[nameof(Gender)] = null;
+            }
         }
 
         public String FirstName {
@@ -72,10 +83,11 @@ namespace RaceRegQuickExample.Model
             set
             {
                 _FirstName = value;
-                OnPropertyChanged(nameof(FirstName));
                 ValidateFirstName();
+                OnPropertyChanged(nameof(FirstName));
             }
         }
+
         public String LastName
         {
             get
@@ -85,10 +97,11 @@ namespace RaceRegQuickExample.Model
             set
             {
                 _LastName = value;
-                OnPropertyChanged(nameof(LastName));
                 ValidateLastName();
+                OnPropertyChanged(nameof(LastName));
             }
         }
+
         public int Age
         {
             get
@@ -98,11 +111,24 @@ namespace RaceRegQuickExample.Model
             set
             {
                 _Age = value;
-                OnPropertyChanged(nameof(Age));
                 ValidateAge();
+                OnPropertyChanged(nameof(Age));
             }
         }
-        public String Gender { get; set; }
+
+        private GenderType gender;
+        public GenderType Gender {
+            get
+            {
+                return gender;
+            }
+            set
+            {
+                gender = value;
+                ValidateGender();
+                OnPropertyChanged(nameof(gender));
+            }
+        }
         public DateTime FinishTime { get; set; }
 
         public string GetToString()

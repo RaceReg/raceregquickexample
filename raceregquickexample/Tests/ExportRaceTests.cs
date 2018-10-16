@@ -9,7 +9,7 @@ using RaceRegQuickExample.ViewModel;
 namespace Tests
 {
     [TestFixture]
-    public class Class1
+    public class ExportRaceTests
     {
         [Test]
         public void ExportRaceTest()
@@ -26,7 +26,7 @@ namespace Tests
             myModel.currentRacer.FirstName = "Jackson";
             myModel.currentRacer.LastName = "Porter";
             myModel.currentRacer.Age = 21;
-            myModel.currentRacer.Gender = "Male";
+            myModel.currentRacer.Gender = RaceRegQuickExample.Model.Racer.GenderType.Male;
             myModel.AddRacer(null);
 
             Assert.AreEqual(myModel.ExportRace(), "TestRace;10/16/2018;This is crazy.;\nAlex;Thayn;25;Male;1/1/0001\nJackson;Porter;21;Male;1/1/0001\n");
